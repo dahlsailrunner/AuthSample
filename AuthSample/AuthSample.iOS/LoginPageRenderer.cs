@@ -17,7 +17,7 @@ namespace AuthSample.iOS
                 clientId: "actioncenterapp", // your OAuth2 client id
                 scope: "actioncenter", // the scopes for the particular API you're accessing, delimited by "+" symbols
                 authorizeUrl: new Uri("https://idsat.nwpsmart.com/identity/connect/authorize"), // the auth URL for the service
-                redirectUrl: new Uri("https://actioncenterapp/callback/")); // the redirect URL for the service
+                redirectUrl: new Uri("https://idsat.nwpsmart.com/identity")); // the redirect URL for the service
             auth.Completed += (sender, eventArgs) =>
             {
                 DismissViewController(true, null);
