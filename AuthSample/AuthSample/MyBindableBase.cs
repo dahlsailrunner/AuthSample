@@ -6,17 +6,18 @@ namespace AuthSample
 {
     public abstract class MyBindableBase: BindableBase
     {
-        protected readonly INavigationService NavService;
-        protected readonly IEventAggregator EventAgg;
+        public readonly INavigationService NavService;
+        public readonly IEventAggregator EventAgg;
         public MyBindableBase(INavigationService navigationService, IEventAggregator eventAggregator)
         {
             NavService = navigationService;
             EventAgg = eventAggregator;
 
-            if (!App.IsLoggedIn)
-            {
-                NavService.Navigate("LoginPage");
-            }
+            // FIRST ATTEMPT:  This doesn't seem to get the MainPage on the ModalStack in iOS.
+            //if (!App.IsLoggedIn)
+            //{
+            //    NavService.Navigate("LoginPage");
+            //}
         }
     }
 }

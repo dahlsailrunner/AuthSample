@@ -1,4 +1,6 @@
-﻿using AuthSample.Events;
+﻿using System;
+using AuthSample.Events;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 
@@ -6,6 +8,8 @@ namespace AuthSample.ViewModels
 {
     public class MainPageViewModel : MyBindableBase, INavigationAware
     {
+        public DelegateCommand NavigateCommand { get; set; }        
+
         string _title = "Main Page";
         public string Title
         {
@@ -17,6 +21,12 @@ namespace AuthSample.ViewModels
         {            
             Title = "Main Page from Constructor";
             EventAgg.GetEvent<LoggedInEvent>().Subscribe(HandleLoginEvent);
+            NavigateCommand = new DelegateCommand(Navigate);
+        }
+
+        private void Navigate()
+        {
+            NavService.Navigate("LoginPage");
         }
 
         private void HandleLoginEvent(string notReallyUsedButNeeded)

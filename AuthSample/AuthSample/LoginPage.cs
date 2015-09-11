@@ -16,6 +16,9 @@ namespace AuthSample
         public void NavigateToHome()
         {
             _ea.GetEvent<LoggedInEvent>().Publish(""); // empty string is needed but we really are just publishing the fact that login was done
+
+            // PROBLEM:  This does not remove the view in iOS - presumably because their is nothing 
+            //     under it on Navigation.ModalStack like there is in Android.
             Navigation.PopModalAsync();
         }
     }

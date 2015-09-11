@@ -6,5 +6,6 @@
              x:Class="AuthSample.Views.MainPage">
     <StackLayout VerticalOptions="Center">
         <Label Text="{Binding Title}" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Button Command="{Binding NavigateCommand}" Text="Login"/>
     </StackLayout>
 </ContentPage>
