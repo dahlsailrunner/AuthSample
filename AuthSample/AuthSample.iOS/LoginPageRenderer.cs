@@ -1,6 +1,7 @@
 ﻿using AuthSample;
 using AuthSample.iOS;
 using System;
+using System.Runtime.Remoting.Channels;
 using Xamarin.Auth;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -12,7 +13,15 @@ namespace AuthSample.iOS
     {
         public override void ViewDidAppear(bool animated)
         {
+            if (App.IsLoggedIn)
+            {
+                //DismissViewController(true, null);
+                return;
+            }
+
             base.ViewDidAppear(animated);
+
+
             var auth = new OAuth2Authenticator(
                 clientId: "actioncenterapp", // your OAuth2 client id
                 scope: "actioncenter", // the scopes for the particular API you're accessing, delimited by "+" symbols
@@ -32,6 +41,17 @@ namespace AuthSample.iOS
                 {
                     // The user cancelled
                 }
+            };
+
+            auth.BrowsingCompleted += (sender, eventArgs) =>
+            {
+                DismissViewController(true, null);
+            };
+
+            auth.Error += (sender, eventArgs) =>
+            {
+               // DismissViewController(true, null);
+                var i = 1;
             };
 
             PresentViewController(auth.GetUI(), true, null);

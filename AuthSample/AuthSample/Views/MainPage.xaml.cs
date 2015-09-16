@@ -6,8 +6,9 @@ namespace AuthSample.Views
     public partial class MainPage : ContentPage
     {
         public MainPage()
-        {
-            InitializeComponent();
+        {            
+            Title = "The Future";
+            InitializeComponent();                        
         }
     }
 }

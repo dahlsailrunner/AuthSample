@@ -1,11 +1,12 @@
 ﻿using AuthSample.Events;
+using AuthSample.Views;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Events;
 using Xamarin.Forms;
 
 namespace AuthSample
 {
-    public class LoginPage : ContentPage
+    public class LoginPage : NavigationPage
     {
         private readonly IEventAggregator _ea;
         public LoginPage()
@@ -18,8 +19,9 @@ namespace AuthSample
             _ea.GetEvent<LoggedInEvent>().Publish(""); // empty string is needed but we really are just publishing the fact that login was done
 
             // PROBLEM:  This does not remove the view in iOS - presumably because their is nothing 
-            //     under it on Navigation.ModalStack like there is in Android.
+            //     under it on Navigation.ModalStack like there is in Android.            
             Navigation.PopModalAsync();
+            //Navigation.PushModalAsync(new MainPage());
         }
     }
 }
